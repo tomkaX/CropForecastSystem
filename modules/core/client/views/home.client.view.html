@@ -1,0 +1,88 @@
+<div data-ng-controller="HomeController">
+  <!-- in future, will be replaced with page brief info, or banner -->
+  <div class="row">
+    <div class="col-md-12">
+      <div class="page-header" style="margin-top: 10px">
+        <div class="row">
+          <!-- logo bar -->
+          <div class="col-lg-2 col-md-2 col-sm-3 col-xs-3">
+            <!--<h1>Welcome to Kleo home</h1>
+            <p>
+              Too see development information, go to our <a class="link" ui-sref="dev">dev's</a> page
+            </p> -->
+            <img class="logo-img" src="modules/core/client/img/logg.png">
+          </div>
+          <div class="col-md-5 hidden-sm col-xs-9">
+            <div class="row" style="font-family: 'Book Antiqua  Arial'; text-align: center">
+              <div class="hidden-md hidden-lg">
+                <!--h5 style="margin-top: 15px; font-weight: bold">CHERNIHIV NATIONAL</h5-->
+                <!--h5 style="margin-top: 10px; font-weight: bold">UNIVERSITY OF TECHNOLOGY</h5-->
+              </div>
+              <div class="hidden-xs hidden-sm">
+                <h3 style="margin-left: 65px; font-weight: bold; font-size:42px;font-family:'Impact'">CropForecast </h3>
+                <h3 style="margin-left: 65px; font-weight: bold; font-size:42px;font-family:'Impact'">Прогноз урожая </h3>
+              </div>
+            </div>
+          </div>
+          <!-- control buttons bar -->
+          <div class="col-md-5 col-sm-9 col-xs-12">
+            <div class="row">
+              <div class="panel-control-buttons">
+                <div class="control-btn-block" ng-repeat="button in mainButtons">
+                  <button class="btn btn-default btn-lg control-btn " ng-click="onBell();">
+                    <span class="glyphicon glyphicon-{{button.icon}}"></span>
+                  </button>
+                  <!--div class="control-btn-text">{{button.title}}</div-->
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- bar end -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-7">
+      <div>
+        <ul class="nav nav-tabs">
+          <li role="presentation" ng-repeat="item in postTypes" ng-class="{'active': item.active}" ><a href="#" ng-click="setSelected(item)" data-toogle="tab">{{item.title}}</a></li>
+        </ul>
+        <div style="margin-top: 10px">
+          <posts-list items="posts" filter="selectedPostType"></posts-list>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-5">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">Announcements</h3>
+        </div>
+        <div class="panel-body panel-widget-container">
+          <posts-list items="posts" filter="{key: 'Announcement'}" disabled-author="true"></posts-list>
+        </div>
+      </div>
+
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">News from sites</h3>
+        </div>
+        <div class="panel-body panel-widget-container">
+          <div class="list-group widget-ann-item">
+            <a data-ng-repeat="item in news" class="list-group-item news-panel-item" href="#">
+              <h4 class="list-group-item-heading" data-ng-bind="item.title"></h4>
+              <p class="list-group-item-text" data-ng-bind="item.content"></p>
+              <small class="list-group-item-text">
+                Posted on
+                <span data-ng-bind="item.date"></span>
+                <span data-ng-bind="'by ' + item.user"></span>
+                <span  style="float: right"><i>from</i> <b>{{item.from}}</b></span>
+              </small>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
